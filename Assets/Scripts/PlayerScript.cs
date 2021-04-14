@@ -13,23 +13,57 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private Transform otherPlayer;
 
+    private MlAgent mlAgent;
+
     private Animator animator;
     private Quaternion initialRotation;
 
-    public void Hit()
+    private int hp;
+
+    [SerializeField]
+    private int kickDamage;
+
+    [SerializeField]
+    private int punchDamage;
+
+    public void Hit(string trigger)
     {
         Debug.Log("hit " + gameObject.name);
+
+        if (trigger == "leg") mlAgent.hit(kickDamage);
+        else mlAgent.hit(punchDamage);
     }
 
-    public void Damaged()
+    public void Damaged(string trigger)
     {
         Debug.Log("Damaged " + gameObject.name);
+        int damage;
+
+        if (trigger == "leg") damage = kickDamage;
+        else damage = punchDamage;
+
+        hp -= damage;
+        if (hp > 0)
+        {
+            mlAgent.damaged(damage);
+        } else
+        {
+            mlAgent.died();
+            reset();
+        }
+    }
+    public void reset()
+    {
+        Debug.Log("Damaged " + gameObject.name);
+        hp = 100;
     }
 
     void OnEnable()
     {
         animator = GetComponentInChildren<Animator>();
         initialRotation = transform.rotation;
+        mlAgent = GetComponent<MlAgent>();
+        hp = 100;
     }
 
     void Update()

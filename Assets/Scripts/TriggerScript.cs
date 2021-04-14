@@ -17,8 +17,16 @@ public class TriggerScript : MonoBehaviour
         if (other.GetComponentInParent<PlayerScript>() != null && player != other.GetComponentInParent<PlayerScript>())
         {
             if (Time.time - lastTrigger < 1.0f) return;
-            player.Hit();
-            other.GetComponentInParent<PlayerScript>().Damaged();
+            if (gameObject.name.Contains("Leg"))
+            {
+                player.Hit("leg");
+                other.GetComponentInParent<PlayerScript>().Damaged("leg");
+            }
+            else
+            {
+                player.Hit("arm");
+                other.GetComponentInParent<PlayerScript>().Damaged("arm");
+            }
             lastTrigger = Time.time;
         }
     }
