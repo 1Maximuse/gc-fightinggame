@@ -46,15 +46,18 @@ public class PlayerScript : MonoBehaviour
         if (hp > 0)
         {
             mlAgent.damaged(damage);
+            // if (mlAgent.kebalik) GetComponent<Rigidbody>().AddForce(new Vector3(0f, 0f, -0.5f));
+            // else GetComponent<Rigidbody>().AddForce(new Vector3(0f, 0f, 0.5f));
         } else
         {
             mlAgent.died();
             reset();
+            otherPlayer.GetComponent<PlayerScript>().reset();
         }
     }
     public void reset()
     {
-        Debug.Log("Damaged " + gameObject.name);
+        // Debug.Log("Damaged " + gameObject.name);
         hp = 100;
     }
 
@@ -104,15 +107,18 @@ public class PlayerScript : MonoBehaviour
         {
             if (!mlAgent.kebalik)
             {
+                Debug.Log("masuk");
                 mlAgent.kebalik = true;
-                transform.Rotate(new Vector3(0, 180f, 0));
+                initialRotation *= Quaternion.Euler(0, 180f, 0);
             }
-        } else
+        } 
+        else
         {
             if (mlAgent.kebalik)
             {
                 mlAgent.kebalik = false;
-                transform.Rotate(new Vector3(0, 180f, 0));
+                // transform.Rotate(new Vector3(0, 180f, 0));
+                initialRotation *= Quaternion.Euler(0, 180f, 0);
             }
         }
     }

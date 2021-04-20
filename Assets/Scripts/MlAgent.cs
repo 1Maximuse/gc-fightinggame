@@ -31,6 +31,7 @@ public class MlAgent : Agent
     public override void OnEpisodeBegin()
     {
         transform.localPosition = initialPosition;
+        // InvokeRepeating("waiterStep", 0f, 1f); 
     }
     public override void OnActionReceived(ActionBuffers actions)
     {
@@ -120,14 +121,14 @@ public class MlAgent : Agent
     IEnumerator waiterForward()
     {
         animator.SetBool("Forward", true);
-        yield return new WaitForSecondsRealtime(0.9f);
+        yield return new WaitForSeconds(0.9f);
         animator.SetBool("Forward", false);
     }
 
     IEnumerator waiterBackward()
     {
         animator.SetBool("Backward", true);
-        yield return new WaitForSecondsRealtime(0.9f);
+        yield return new WaitForSeconds(0.9f);
         animator.SetBool("Backward", false);
     }
     private void waiterStep()

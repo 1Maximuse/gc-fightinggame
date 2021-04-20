@@ -2,17 +2,17 @@
     "MlAgent": {
         "checkpoints": [
             {
-                "steps": 6680,
-                "file_path": "results\\ppo\\MlAgent\\MlAgent-6680.onnx",
-                "reward": 5.166666666666667,
-                "creation_time": 1618909597.671436
+                "steps": 2323,
+                "file_path": "results\\ppo\\MlAgent\\MlAgent-2323.onnx",
+                "reward": -23.0,
+                "creation_time": 1618914007.9484618
             }
         ],
         "final_checkpoint": {
-            "steps": 6680,
+            "steps": 2323,
             "file_path": "results\\ppo\\MlAgent.onnx",
-            "reward": 5.166666666666667,
-            "creation_time": 1618909597.671436
+            "reward": -23.0,
+            "creation_time": 1618914007.9484618
         }
     },
     "metadata": {
