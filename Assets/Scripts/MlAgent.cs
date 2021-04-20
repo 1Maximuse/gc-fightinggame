@@ -17,48 +17,77 @@ public class MlAgent : Agent
 
     [SerializeField] private Vector3 initialPosition;
 
+    public bool kebalik;
 
     protected override void OnEnable()
     {
+        kebalik = false;
+        base.OnEnable();
         // academy = Academy.Instance;
         // academy.AutomaticSteppingEnabled = false;
-        Time.captureDeltaTime = 0;
         animator = GetComponentInChildren<Animator>();
-        Debug.Log("OnEnable ngab");
     }
 
     public override void OnEpisodeBegin()
     {
-        // InvokeRepeating("waiterStep", 0f, 1f);
-        Debug.Log("Mulai ngab");
-        transform.position = initialPosition;
+        transform.localPosition = initialPosition;
     }
     public override void OnActionReceived(ActionBuffers actions)
     {
-        Debug.Log("Action");
         int move = actions.DiscreteActions[0];
 
-        if (move == 0)
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            StartCoroutine(waiterForward());
+            if (move == 0)
+            {
+                if (kebalik) StartCoroutine(waiterBackward());
+                else StartCoroutine(waiterForward());
+            }
+            else if (move == 1)
+            {
+                if (!kebalik) StartCoroutine(waiterBackward());
+                else StartCoroutine(waiterForward());
+            }
+            else if (move == 2)
+            {
+                animator.SetTrigger("Jab");
+            }
+            else if (move == 3)
+            {
+                animator.SetTrigger("Kick");
+            }
         }
-        else if (move == 1)
+    }
+
+    public override void Heuristic(in ActionBuffers actionsOut)
+    {
+        ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
+
+        discreteActions[0] = 4;
+
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            StartCoroutine(waiterBackward());
+            discreteActions[0] = 0;
         }
-        else if (move == 2)
+
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            animator.SetTrigger("Jab");
+            discreteActions[0] = 1;
         }
-        else
+
+        if (Input.GetMouseButtonDown(0))
         {
-            animator.SetTrigger("Kick");
+            discreteActions[0] = 2;
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            discreteActions[0] = 3;
         }
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        Debug.Log("Observe ngab");
         sensor.AddObservation(transform.localPosition);
         sensor.AddObservation(bodyTransform.localPosition);
         sensor.AddObservation(leftArmTransform.localPosition);
@@ -81,22 +110,28 @@ public class MlAgent : Agent
     {
         EndEpisode();
     }
+
+    public void HitBoundaries()
+    {
+        SetReward(-100);
+        EndEpisode();
+    }
+
     IEnumerator waiterForward()
     {
         animator.SetBool("Forward", true);
-        yield return new WaitForSeconds(0.9f);
+        yield return new WaitForSecondsRealtime(0.9f);
         animator.SetBool("Forward", false);
     }
 
     IEnumerator waiterBackward()
     {
         animator.SetBool("Backward", true);
-        yield return new WaitForSeconds(0.9f);
+        yield return new WaitForSecondsRealtime(0.9f);
         animator.SetBool("Backward", false);
     }
     private void waiterStep()
     {
-        Debug.Log("step");
         academy.EnvironmentStep();
     }
 

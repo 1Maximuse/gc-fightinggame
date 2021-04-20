@@ -1,4 +1,20 @@
 {
+    "MlAgent": {
+        "checkpoints": [
+            {
+                "steps": 6680,
+                "file_path": "results\\ppo\\MlAgent\\MlAgent-6680.onnx",
+                "reward": 5.166666666666667,
+                "creation_time": 1618909597.671436
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 6680,
+            "file_path": "results\\ppo\\MlAgent.onnx",
+            "reward": 5.166666666666667,
+            "creation_time": 1618909597.671436
+        }
+    },
     "metadata": {
         "stats_format_version": "0.2.0",
         "mlagents_version": "0.25.1",

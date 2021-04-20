@@ -70,7 +70,7 @@ public class PlayerScript : MonoBehaviour
     {
         transform.position = new Vector3(0f, 0f, transform.position.z);
         transform.rotation = initialRotation;
-        if (controlled)
+        if (false && controlled)
         {
             if (Input.GetKeyDown(KeyCode.D))
             {
@@ -100,10 +100,20 @@ public class PlayerScript : MonoBehaviour
                 animator.SetTrigger("Kick");
             }
         }
-        if (Mathf.Abs(transform.position.z - otherPlayer.position.z) < minDistance)
+        if (transform.position.z > otherPlayer.position.z)
         {
-            bool direction = (transform.position.z - otherPlayer.position.z) > 0;
-            transform.position = transform.position - new Vector3(0f, 0f, 10f * Time.deltaTime * (direction ? -1 : 1));
+            if (!mlAgent.kebalik)
+            {
+                mlAgent.kebalik = true;
+                transform.Rotate(new Vector3(0, 180f, 0));
+            }
+        } else
+        {
+            if (mlAgent.kebalik)
+            {
+                mlAgent.kebalik = false;
+                transform.Rotate(new Vector3(0, 180f, 0));
+            }
         }
     }
 }
