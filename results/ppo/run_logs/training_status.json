@@ -2,17 +2,41 @@
     "MlAgent": {
         "checkpoints": [
             {
-                "steps": 2323,
-                "file_path": "results\\ppo\\MlAgent\\MlAgent-2323.onnx",
-                "reward": -23.0,
-                "creation_time": 1618914007.9484618
+                "steps": 453299,
+                "file_path": "results\\ppo\\MlAgent\\MlAgent-453299.onnx",
+                "reward": null,
+                "creation_time": 1618975546.2547297
+            },
+            {
+                "steps": 499975,
+                "file_path": "results\\ppo\\MlAgent\\MlAgent-499975.onnx",
+                "reward": null,
+                "creation_time": 1618975837.1731796
+            },
+            {
+                "steps": 999965,
+                "file_path": "results\\ppo\\MlAgent\\MlAgent-999965.onnx",
+                "reward": 24.0,
+                "creation_time": 1618978612.3258064
+            },
+            {
+                "steps": 1321006,
+                "file_path": "results\\ppo\\MlAgent\\MlAgent-1321006.onnx",
+                "reward": null,
+                "creation_time": 1618980336.9955447
+            },
+            {
+                "steps": 1324214,
+                "file_path": "results\\ppo\\MlAgent\\MlAgent-1324214.onnx",
+                "reward": null,
+                "creation_time": 1618980368.7016022
             }
         ],
         "final_checkpoint": {
-            "steps": 2323,
+            "steps": 1324214,
             "file_path": "results\\ppo\\MlAgent.onnx",
-            "reward": -23.0,
-            "creation_time": 1618914007.9484618
+            "reward": null,
+            "creation_time": 1618980368.7016022
         }
     },
     "metadata": {

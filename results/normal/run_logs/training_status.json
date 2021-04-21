@@ -2,41 +2,23 @@
     "MlAgent": {
         "checkpoints": [
             {
-                "steps": 14964,
-                "file_path": "results\\normal\\MlAgent\\MlAgent-14964.onnx",
-                "reward": null,
-                "creation_time": 1618911654.3656332
+                "steps": 499989,
+                "file_path": "results\\normal\\MlAgent\\MlAgent-499989.onnx",
+                "reward": 11.0,
+                "creation_time": 1618986469.3220937
             },
             {
-                "steps": 19916,
-                "file_path": "results\\normal\\MlAgent\\MlAgent-19916.onnx",
-                "reward": 8.833333333333334,
-                "creation_time": 1618911819.849706
-            },
-            {
-                "steps": 33960,
-                "file_path": "results\\normal\\MlAgent\\MlAgent-33960.onnx",
-                "reward": 6.777777777777778,
-                "creation_time": 1618912386.6138358
-            },
-            {
-                "steps": 40994,
-                "file_path": "results\\normal\\MlAgent\\MlAgent-40994.onnx",
-                "reward": 7.0,
-                "creation_time": 1618912582.921519
-            },
-            {
-                "steps": 41378,
-                "file_path": "results\\normal\\MlAgent\\MlAgent-41378.onnx",
-                "reward": null,
-                "creation_time": 1618912801.689561
+                "steps": 809767,
+                "file_path": "results\\normal\\MlAgent\\MlAgent-809767.onnx",
+                "reward": 3.0833333333333335,
+                "creation_time": 1618990769.0202143
             }
         ],
         "final_checkpoint": {
-            "steps": 41378,
+            "steps": 809767,
             "file_path": "results\\normal\\MlAgent.onnx",
-            "reward": null,
-            "creation_time": 1618912801.689561
+            "reward": 3.0833333333333335,
+            "creation_time": 1618990769.0202143
         }
     },
     "metadata": {
