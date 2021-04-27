@@ -26,6 +26,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private int punchDamage;
 
+    [SerializeField]
+    private GameController gameController;
     public void Hit(string trigger)
     {
         Debug.Log("hit " + gameObject.name);
@@ -51,19 +53,23 @@ public class PlayerScript : MonoBehaviour
         if (hp > 0)
         {
             mlAgent.damaged(damage);
-            // if (mlAgent.kebalik) GetComponent<Rigidbody>().AddForce(new Vector3(0f, 0f, -0.5f));
-            // else GetComponent<Rigidbody>().AddForce(new Vector3(0f, 0f, 0.5f));
         } else
         {
             mlAgent.died();
             otherPlayer.GetComponent<MlAgent>().EndEpisode();
             reset();
             otherPlayer.GetComponent<PlayerScript>().reset();
+            if (gameObject.name == "Player")
+            {
+                gameController.Lose();
+            } else
+            {
+                gameController.Win();
+            }
         }
     }
     public void reset()
     {
-        // Debug.Log("Damaged " + gameObject.name);
         hp = 100;
     }
 
