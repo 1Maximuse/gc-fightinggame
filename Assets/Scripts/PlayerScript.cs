@@ -34,6 +34,11 @@ public class PlayerScript : MonoBehaviour
         else mlAgent.hit(punchDamage);
     }
 
+    public int GetHP()
+    {
+        return hp;
+    }
+
     public void Damaged(string trigger)
     {
         Debug.Log("Damaged " + gameObject.name);
@@ -51,6 +56,7 @@ public class PlayerScript : MonoBehaviour
         } else
         {
             mlAgent.died();
+            otherPlayer.GetComponent<MlAgent>().EndEpisode();
             reset();
             otherPlayer.GetComponent<PlayerScript>().reset();
         }
@@ -73,7 +79,7 @@ public class PlayerScript : MonoBehaviour
     {
         transform.position = new Vector3(0f, 0f, transform.position.z);
         transform.rotation = initialRotation;
-        if (false && controlled)
+        if (controlled)
         {
             if (Input.GetKeyDown(KeyCode.D))
             {
