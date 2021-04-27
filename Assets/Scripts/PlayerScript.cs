@@ -109,7 +109,7 @@ public class PlayerScript : MonoBehaviour
                 animator.SetTrigger("Kick");
             }
         }
-        if (transform.position.z > otherPlayer.position.z)
+        if (transform.position.z > otherPlayer.position.z && mlAgent != null)
         {
             if (!mlAgent.kebalik)
             {
@@ -118,7 +118,7 @@ public class PlayerScript : MonoBehaviour
                 initialRotation *= Quaternion.Euler(0, 180f, 0);
             }
         } 
-        else
+        else if (mlAgent != null)
         {
             if (mlAgent.kebalik)
             {

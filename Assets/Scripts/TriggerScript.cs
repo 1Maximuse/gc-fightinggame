@@ -14,6 +14,10 @@ public class TriggerScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!other.TryGetComponent(out Body body))
+        {
+            return;
+        }
         if (other.GetComponentInParent<PlayerScript>() != null && player != other.GetComponentInParent<PlayerScript>())
         {
             if (Time.time - lastTrigger < 1.0f) return;
@@ -22,6 +26,7 @@ public class TriggerScript : MonoBehaviour
                 player.Hit("leg");
                 other.GetComponentInParent<PlayerScript>().Damaged("leg");
             }
+            // else if (gameObject.name.Contains("Arm") && !other.gameObject.name.Contains("Arm") && !other.gameObject.name.Contains("Leg"))
             else
             {
                 player.Hit("arm");
